@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIPulse - Autonomous AI & Tech News Hub</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #030712;
+            color: #f9fafb;
+            line-height: 1.6;
+        }
+        header {
+            background: #111827;
+            padding: 20px 40px;
+            border-bottom: 1px solid #1f2937;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #38bdf8;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            color: #9ca3af;
+            font-size: 1.1rem;
+        }
+        .news-grid {
+            display: grid;
+            gap: 20px;
+        }
+        .news-card {
+            background: #1f2937;
+            border: 1px solid #374151;
+            padding: 20px;
+            border-radius: 12px;
+            transition: transform 0.2s;
+        }
+        .news-card:hover {
+            transform: translateY(-3px);
+        }
+        .news-card h3 {
+            color: #f3f4f6;
+            margin-bottom: 10px;
+            font-size: 1.25rem;
+        }
+        .news-card p {
+            color: #9ca3af;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        .news-card a {
+            color: #38bdf8;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .news-card a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #6b7280;
+            border-top: 1px solid #1f2937;
+            margin-top: 50px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">AIPulse ⚡</a>
+        <span style="color: #10b981; font-size: 0.85rem; font-weight: bold;">● Live & Autonomous</span>
+    </header>
+
+    <div class="container">
+        <div class="hero">
+            <h1>Latest Artificial Intelligence Updates</h1>
+            <p>Automatically updated 24/7 with cutting-edge tech and AI breakthroughs worldwide.</p>
+        </div>
+
+        <div id="news-container" class="news-grid">
+            <!-- سيتم جلب الأخبار تلقائياً هنا -->
+            <p style="text-align: center; color: #9ca3af;">Loading latest updates...</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 AIPulse. Autonomous Global Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // جلب ملف الأخبار الذي يحدثه السيرفر تلقائياً
+        fetch('news.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('news-container');
+                container.innerHTML = '';
+                data.forEach(item => {
+                    container.innerHTML += `
+                        <div class="news-card">
+                            <h3>${item.title}</h3>
+                            <p>${item.description}</p>
+                            <a href="${item.url}" target="_blank">Read Full Article &rarr;</a>
+                        </div>
+                    `;
+                });
+            })
+            .catch(error => {
+                document.getElementById('news-container').innerHTML = '<p style="text-align: center; color: #ef4444;">No updates available right now. Check back soon!</p>';
+            });
+    </script>
+</body>
+</html>
